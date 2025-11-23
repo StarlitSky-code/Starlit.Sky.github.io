@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS动态渐变效果</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        
+        .gradient-background {
+            width: 80%;
+            height: 70%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            
+            /* 动态渐变背景 */
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #a18cd1, #fbc2eb);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        p {
+            font-size: 1.2rem;
+            max-width: 80%;
+            line-height: 1.6;
+        }
+        
+        .controls {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        /* 定义动画 */
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .gradient-background {
+                width: 90%;
+                height: 80%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-background">
+        <h1>动态渐变效果</h1>
+        <p>这个示例展示了如何使用CSS创建平滑的动态渐变背景效果</p>
+        <div class="controls">
+            <button>开始</button>
+            <button>暂停</button>
+        </div>
+    </div>
+
+    <script>
+        // 简单的按钮交互
+        const buttons = document.querySelectorAll('button');
+        const gradient = document.querySelector('.gradient-background');
+        
+        buttons[0].addEventListener('click', () => {
+            gradient.style.animationPlayState = 'running';
+        });
+        
+        buttons[1].addEventListener('click', () => {
+            gradient.style.animationPlayState = 'paused';
+        });
+    </script>
+</body>
+</html>
